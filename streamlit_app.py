@@ -145,7 +145,11 @@ if selected_section == "Brain Teasers":
             """,
             height=300,
         )
-        
+
+        st.caption("(Source: I grew up in Singapore and have lived here all my life — \
+                   here's my complete guide to visiting the island-state. Sam David. \
+                   11 Oct 2022. Business Insider.)")
+
     elif toggle_option == "The Mysterious Brain":
         # Display the image
         st.image("images/mysterious_brain.jpg", caption="Source: https://www.pinterest.com/pin/784189353836104983/", width=400)
