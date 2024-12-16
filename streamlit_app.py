@@ -66,7 +66,7 @@ if selected_section == "Brain Teasers":
             """
             <div style="font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.8; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
                 <h3>Euskara</h3>
-                <p>H4U 1R4KURTZ3N B4D4K1ZU, ZU M3NT3 1ND4RTSU4 DUZU:</p>
+                <p>H4U 1R4KURTZ3N B4D4K1ZU, M3NT3 1ND4RTSU4 DUZU:</p>
                 <p>M3ZU H4U ZUR3 6URMU4K Z3N8T N4H1 M4IT3R D34.<br>
                 H45I4N Z4IL4 Z3N, B41N4 0R41N ZUR3 6URMU4<br>
                 AUT0M4T1KOK1 1R4KURTZ3N 4R1 D4.<br>
@@ -156,6 +156,159 @@ if selected_section == "Brain Teasers":
 
 elif selected_section == "Key Concepts":
     st.markdown("### Key Concepts\nHere are the key concepts.")
+    # Title
+    st.title("Translanguaging: Towards a Theory of Language")
+
+    # Embed HTML, CSS, and JavaScript
+    st.components.v1.html(
+        """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Slide Transition</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f9f9f9;
+                    overflow: hidden;
+                    text-align: center;
+                }
+
+                .slide-container {
+                    position: relative;
+                    width: 100%;
+                    height: 300px;
+                    margin: auto;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    background-color: white;
+                }
+
+                .slide {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                }
+
+                .slide.active {
+                    opacity: 1;
+                }
+
+                .buttons {
+                    margin: 20px;
+                }
+
+                table {
+                    width: 80%;
+                    margin: 20px auto;
+                    border-collapse: collapse;
+                }
+
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 10px;
+                    text-align: center;
+                }
+
+                th {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+                td {
+                    background-color: #f9f9f9;
+                }
+
+                caption {
+                    font-size: 1.2em;
+                    margin: 10px;
+                    font-weight: bold;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="slide-container">
+                <!-- Slide 1 -->
+                <div class="slide active" id="slide1">
+                    <table>
+                        <caption>Language Boundaries</caption>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Language Boundaries*</th>
+                        </tr>
+                        <tr>
+                            <td>Translanguaging</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Code Switching</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Heteroglossia</td>
+                            <td>No</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide" id="slide2">
+                    <table>
+                        <caption>Language Boundaries and Pedagogical Strategy</caption>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Language Boundaries*</th>
+                            <th>As a Pedagogical Strategy</th>
+                        </tr>
+                        <tr>
+                            <td>Translanguaging</td>
+                            <td>No</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Code Switching</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Heteroglossia</td>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="buttons">
+                <button onclick="showSlide(1)">Slide 1</button>
+                <button onclick="showSlide(2)">Slide 2</button>
+            </div>
+
+            <script>
+                function showSlide(slideNumber) {
+                    const slides = document.querySelectorAll('.slide');
+                    slides.forEach((slide, index) => {
+                        if (index === slideNumber - 1) {
+                            slide.classList.add('active');
+                        } else {
+                            slide.classList.remove('active');
+                        }
+                    });
+                }
+            </script>
+        </body>
+        </html>
+        """,
+        height=400,
+    )
 
 elif selected_section == "Research Methods":
     st.markdown("### Research Methods\nDetails about the research methods.")
