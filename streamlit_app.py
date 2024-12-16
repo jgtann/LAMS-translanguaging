@@ -78,25 +78,74 @@ if selected_section == "Brain Teasers":
         )
 
     elif toggle_option == "Mixed Sentence":
-        st.markdown(
-            """
-            <div class="sentence" style="margin-top: 10px; margin-bottom: 10px; font-size: 2em; font-weight: bold;">
-                <span style="color: green;" title="Tamil">Dey</span>, 
-                <span style="color: #e4007c;" title="Mandarin (我们)">wǒ men</span> 
-                <span style="color: red;" title="Cantonese (拍拖)">paktor</span> 
-                <span style="color: deepskyblue;" title="English">always</span> 
-                <span style="color: blue;" title="Malay">makan</span> 
-                <span style="color: deepskyblue;" title="English">at</span> 
-                <span style="color: blue;" title="Malay">kopitiam</span> 
-                <span style="color: purple;" title="Hokkien/Hakka (店)">one</span>.
-            </div>
-            <div style="font-size: 1em; margin-top: 10px; color: gray;">
-                Translation: Hey, when we date we always eat at the coffeeshop (one).
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
 
+        # Embed custom HTML and CSS for the updated visual
+        st.components.v1.html(
+            """
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Mixed Language Visual</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                        background-color: #f9f9f9;
+                    }
+                    .highlight {
+                        font-size: 2em;
+                        font-weight: bold;
+                        margin: 20px;
+                        line-height: 1.5;
+                    }
+                    .highlight span {
+                        display: inline-block;
+                        position: relative;
+                    }
+                    .tamil { color: green; }
+                    .mandarin { color: #e4007c; }
+                    .cantonese { color: red; }
+                    .english { color: deepskyblue; }
+                    .malay { color: blue; }
+                    .hokkien { color: purple; }
+                    .unknown { color: goldenrod; }
+
+                    .kopitiam span {
+                        display: inline;
+                        white-space: nowrap; /* Ensure word stays together */
+                    }
+
+                    .translation {
+                        font-size: 1.2em;
+                        margin-top: 20px;
+                        color: gray;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="highlight">
+                    <span class="tamil">Dey</span>, 
+                    <span class="mandarin">wǒ men</span> 
+                    <span class="cantonese">paktor</span> 
+                    <span class="english">always</span> 
+                    <span class="malay">makan</span> 
+                    <span class="english">at</span> 
+                    <span class="kopitiam">
+                        <span class="malay">kopi</span><span class="hokkien">tiam</span>
+                    </span>
+                    <span class="unknown">one</span>.
+                </div>
+                <div class="translation">
+                    Translation: Hey, when we date we always eat at the coffeeshop (one).
+                </div>
+            </body>
+            </html>
+            """,
+            height=300,
+        )
+        
     elif toggle_option == "The Mysterious Brain":
         # Display the image
         st.image("images/mysterious_brain.jpg", caption="Source: https://www.pinterest.com/pin/784189353836104983/", width=400)
