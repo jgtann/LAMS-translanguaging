@@ -13,7 +13,7 @@ st.markdown(
 )
 
 # Sidebar navigation
-selected_section = st.sidebar.radio("INTRODUCTION", ["Translanguaging", "Key Concepts", "Visualizing Translanguaging"])
+selected_section = st.sidebar.radio("INTRODUCTION", ["Translanguaging", "Translanguaging vs. Code Switching and Hetereglossia", "Visualizing Translanguaging"])
 
 if selected_section == "Translanguaging":
     # Display selected section
@@ -222,10 +222,10 @@ if selected_section == "Translanguaging":
     elif toggle_option == "The Mysterious Brain":
         st.image("images/mysterious_brain.jpg", caption="The Mysterious Brain", width=400)
 
-elif selected_section == "Visualizing Translanguaging":
+elif selected_section == "Translanguaging vs. Code Switching and Hetereglossia":
 
     # Title
-    st.title("Visualizing Translanguaging")
+    st.title("Translanguaging vs. Code Switching and Hetereglossia")
 
     # Embed HTML, CSS, and JavaScript
     st.components.v1.html(
@@ -378,7 +378,7 @@ elif selected_section == "Visualizing Translanguaging":
         height=400,
     )
 
-elif selected_section == "Translanguaging":
+elif selected_section == "Visualizing Translanguaging":
 
     # Add buttons for control
     start_button = st.button("Start Animation")
