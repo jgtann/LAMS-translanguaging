@@ -13,11 +13,11 @@ st.markdown(
 )
 
 # Sidebar navigation
-selected_section = st.sidebar.radio("INTRODUCTION", ["Brain Teasers", "Key Concepts", "Translanguaging"])
+selected_section = st.sidebar.radio("INTRODUCTION", ["Translanguaging", "Key Concepts", "Visualizing Translanguaging"])
 
-if selected_section == "Brain Teasers":
+if selected_section == "Translanguaging":
     # Display selected section
-    st.markdown("### Brain Teasers")
+    st.markdown("### What is Translanguaging")
     
     # Create a toggle button
     toggle_option = st.selectbox(
@@ -222,11 +222,10 @@ if selected_section == "Brain Teasers":
     elif toggle_option == "The Mysterious Brain":
         st.image("images/mysterious_brain.jpg", caption="The Mysterious Brain", width=400)
 
-elif selected_section == "Key Concepts":
-    st.markdown("### Key Concepts")
+elif selected_section == "Visualizing Translanguaging":
 
     # Title
-    st.title("Translanguaging")
+    st.title("Visualizing Translanguaging")
 
     # Embed HTML, CSS, and JavaScript
     st.components.v1.html(
