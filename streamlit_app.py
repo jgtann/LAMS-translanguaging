@@ -17,7 +17,7 @@ selected_section = st.sidebar.radio("INTRODUCTION", ["Translanguaging", "Transla
 
 if selected_section == "Translanguaging":
     # Display selected section
-    st.markdown("### What is Translanguaging")
+    st.markdown("### What is Translanguaging?")
     
     # Create a toggle button
     toggle_option = st.selectbox(
