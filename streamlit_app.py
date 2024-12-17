@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Add global CSS to disable scrolling
+# Disable scrolling
 st.markdown(
     """
     <style>
@@ -13,39 +13,109 @@ st.markdown(
 )
 
 # Sidebar navigation
-st.sidebar.title("Navigation")
-navigation_options = ["Brain Teasers", "Key Concepts", "Research Methods", "Results", "Conclusion"]
-selected_section = st.sidebar.radio("Go to", navigation_options)
-
-# Display selected section
-st.title("Brain Teasers")
+selected_section = st.sidebar.radio("INTRODUCTION", ["Brain Teasers", "Key Concepts", "Translanguaging"])
 
 if selected_section == "Brain Teasers":
+    # Display selected section
+    st.markdown("### Brain Teasers")
+    
     # Create a toggle button
     toggle_option = st.selectbox(
         "Choose content to display:",
-        ["Le Franglish", "Spanish", "Euskara", "Mixed Sentence", "The Mysterious Brain"]
+        ["Le Franglish", "Spanish", "Hmm...?", "Mixed Sentence", "The Mysterious Brain"]
     )
     
-    # Display content based on toggle selection
+    # Timer HTML (for "Le Franglish")
     if toggle_option == "Le Franglish":
-        st.markdown(
+        st.components.v1.html(
             """
-            <div style="margin: 10px; padding: 20px; background-color: #f5f5f5; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
-                <h2 style="font-size: 20px; line-height: 1.0;">You Can't Read This Article Si T'es Pas Bilingue. (English & Français)</h2>
-                <div style="font-size: 18px; line-height: 1.8;">
-                    Being bilingual est parmi the best pleasures dans le monde entier. Think about it pendant un instant. You can utiliser deux different 
-                    languages en même temps in such a beautiful way that makes ton cerveau wants to exploser from the speed par la quelle it switches 
-                    from one langue to l'autre but still tu peux do it and ressentir spécial(e) at the same time, et c'est pour ça you are unique. Le 
-                    fact that tu peux lire this article without stopping to think est un talent très few people have. La majorité de people struggle to 
-                    lire juste in one single language, but what you are doing maintenant est un signe of absolute genius!
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Le Franglish Timer</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                        background-color: #f9f9f9;
+                        margin: 0;
+                        padding: 20px;
+                    }
+                    .container {
+                        margin: 20px auto;
+                        padding: 20px;
+                        max-width: 800px;
+                        background-color: #ffffff;
+                        border-radius: 10px;
+                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                    }
+                    .timer {
+                        font-size: 2em;
+                        font-weight: bold;
+                        color: #ff0000;
+                        margin-bottom: 20px;
+                    }
+                    .start-button {
+                        padding: 10px 20px;
+                        font-size: 1em;
+                        color: white;
+                        background-color: #007bff;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        margin-top: 10px;
+                    }
+                    .start-button:hover {
+                        background-color: #0056b3;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div id="timer" class="timer">00:00</div>
+                    <button class="start-button" onclick="startStopTimer()">Start Timer</button>
+                    <div class="content">
+                        <h2>You Can't Read This Article Si T'es Pas Bilingue. (English & Français)</h2>
+                        <p>
+                            Being bilingual est parmi the best pleasures dans le monde entier. Think about it pendant un instant.
+                            You can utiliser deux different languages en même temps in such a beautiful way that makes ton cerveau
+                            want to exploser from the speed par laquelle it switches from one langue to l'autre but still tu peux do
+                            it and ressentir spécial(e) at the same time. Et c'est pour ça you are unique.
+                        </p>
+                    </div>
                 </div>
-            </div>
+                <script>
+                    let timerInterval;
+                    let isRunning = false;
+                    let elapsedSeconds = 0;
+
+                    function startStopTimer() {
+                        const timerElement = document.getElementById("timer");
+                        if (isRunning) {
+                            clearInterval(timerInterval);
+                            isRunning = false;
+                        } else {
+                            isRunning = true;
+                            timerInterval = setInterval(() => {
+                                elapsedSeconds++;
+                                const minutes = Math.floor(elapsedSeconds / 60);
+                                const seconds = elapsedSeconds % 60;
+                                timerElement.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+                            }, 1000);
+                        }
+                    }
+                </script>
+            </body>
+            </html>
             """,
-            unsafe_allow_html=True,
+            height=600,
         )
 
+    # Other options
     elif toggle_option == "Spanish":
+        
         st.markdown(
             """
             <div style="font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.8; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
@@ -60,12 +130,13 @@ if selected_section == "Brain Teasers":
             """,
             unsafe_allow_html=True,
         )
+    
+    elif toggle_option == "Hmm...?":
 
-    elif toggle_option == "Euskara":
         st.markdown(
             """
             <div style="font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.8; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
-                <h3>Euskara</h3>
+                <h3>???</h3>
                 <p>H4U 1R4KURTZ3N B4D4K1ZU, M3NT3 1ND4RTSU4 DUZU:</p>
                 <p>M3ZU H4U ZUR3 6URMU4K Z3N8T N4H1 M4IT3R D34.<br>
                 H45I4N Z4IL4 Z3N, B41N4 0R41N ZUR3 6URMU4<br>
@@ -78,8 +149,7 @@ if selected_section == "Brain Teasers":
         )
 
     elif toggle_option == "Mixed Sentence":
-
-        # Embed custom HTML and CSS for the updated visual
+                # Embed custom HTML and CSS for the updated visual
         st.components.v1.html(
             """
             <!DOCTYPE html>
@@ -146,18 +216,17 @@ if selected_section == "Brain Teasers":
             height=300,
         )
 
-        st.caption("(Source: I grew up in Singapore and have lived here all my life — \
-                   here's my complete guide to visiting the island-state. Sam David. \
-                   11 Oct 2022. Business Insider.)")
+        st.caption("(Source: Article titled 'I grew up in Singapore and have lived here all my life - \
+                   here's my complete guide to visiting the island-state,' by Sam David published in Business Insider on 11 Oct 2022.)")
 
     elif toggle_option == "The Mysterious Brain":
-        # Display the image
-        st.image("images/mysterious_brain.jpg", caption="Source: https://www.pinterest.com/pin/784189353836104983/", width=400)
+        st.image("images/mysterious_brain.jpg", caption="The Mysterious Brain", width=400)
 
 elif selected_section == "Key Concepts":
-    st.markdown("### Key Concepts\nHere are the key concepts.")
+    st.markdown("### Key Concepts")
+
     # Title
-    st.title("Translanguaging: Towards a Theory of Language")
+    st.title("Translanguaging")
 
     # Embed HTML, CSS, and JavaScript
     st.components.v1.html(
@@ -238,7 +307,7 @@ elif selected_section == "Key Concepts":
                 <!-- Slide 1 -->
                 <div class="slide active" id="slide1">
                     <table>
-                        <caption>Language Boundaries</caption>
+                        <caption>in comparison with Code Switching and Hetereglossia</caption>
                         <tr>
                             <th>Concept</th>
                             <th>Language Boundaries*</th>
@@ -261,7 +330,7 @@ elif selected_section == "Key Concepts":
                 <!-- Slide 2 -->
                 <div class="slide" id="slide2">
                     <table>
-                        <caption>Language Boundaries and Pedagogical Strategy</caption>
+                        <caption>Translanguaging, Code Switching and Hetereglossia</caption>
                         <tr>
                             <th>Concept</th>
                             <th>Language Boundaries*</th>
@@ -310,8 +379,337 @@ elif selected_section == "Key Concepts":
         height=400,
     )
 
+elif selected_section == "Translanguaging":
+
+    # Add buttons for control
+    start_button = st.button("Start Animation")
+    stop_button = st.button("Stop Animation")
+
+    # Embed HTML, CSS, and JavaScript
+    st.components.v1.html(
+        f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Particle Animation</title>
+            <style>
+                body {{
+                    margin: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    background-color: #000;
+                }}
+                canvas {{
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }}
+            </style>
+        </head>
+        <body>
+            <canvas id="canvas1"></canvas>
+            <script>
+                const canvas = document.getElementById("canvas1");
+                const ctx = canvas.getContext("2d");
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                let particlesArray = [];
+                let animationActive = {"true" if start_button else "false"};
+                let stopAnimation = {"true" if stop_button else "false"};
+
+                // Get mouse position
+                let mouse = {{
+                    x: null,
+                    y: null,
+                    radius: (canvas.height / 80) * (canvas.width / 80),
+                }};
+
+                window.addEventListener("mousemove", function (event) {{
+                    mouse.x = event.x;
+                    mouse.y = event.y;
+                }});
+
+                // Create Particle class
+                class Particle {{
+                    constructor(x, y, directionX, directionY, size, color) {{
+                        this.x = x;
+                        this.y = y;
+                        this.directionX = directionX;
+                        this.directionY = directionY;
+                        this.size = size;
+                        this.color = color;
+                    }}
+
+                    draw() {{
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                    }}
+
+                    update() {{
+                        if (this.x > canvas.width || this.x < 0) {{
+                            this.directionX = -this.directionX;
+                        }}
+                        if (this.y > canvas.height || this.y < 0) {{
+                            this.directionY = -this.directionY;
+                        }}
+
+                        let dx = mouse.x - this.x;
+                        let dy = mouse.y - this.y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < mouse.radius + this.size) {{
+                            if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {{
+                                this.x += 10;
+                            }}
+                            if (mouse.x > this.x && this.x > this.size * 10) {{
+                                this.x -= 10;
+                            }}
+                            if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {{
+                                this.y += 10;
+                            }}
+                            if (mouse.y > this.y && this.y > this.size * 10) {{
+                                this.y -= 10;
+                            }}
+                        }}
+
+                        this.x += this.directionX;
+                        this.y += this.directionY;
+
+                        this.draw();
+                    }}
+                }}
+
+                function init() {{
+                    particlesArray = [];
+                    let numberOfParticles = (canvas.height * canvas.width) / 9000;
+                    for (let i = 0; i < numberOfParticles; i++) {{
+                        let size = Math.random() * 5 + 1;
+                        let x = Math.random() * (innerWidth - size * 2) + size * 2;
+                        let y = Math.random() * (innerHeight - size * 2) + size * 2;
+                        let directionX = Math.random() * 5 - 2.5;
+                        let directionY = Math.random() * 5 - 2.5;
+                        let color = "#8C5523";
+
+                        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+                    }}
+                }}
+
+                function connect() {{
+                    for (let a = 0; a < particlesArray.length; a++) {{
+                        for (let b = a; b < particlesArray.length; b++) {{
+                            let distance =
+                                Math.pow(particlesArray[a].x - particlesArray[b].x, 2) +
+                                Math.pow(particlesArray[a].y - particlesArray[b].y, 2);
+                            if (distance < (canvas.width / 7) * (canvas.height / 7)) {{
+                                let opacityValue = 1 - distance / 20000;
+                                ctx.strokeStyle = `rgba(140,85,31,${{opacityValue}})`;
+                                ctx.lineWidth = 1;
+                                ctx.beginPath();
+                                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                                ctx.stroke();
+                            }}
+                        }}
+                    }}
+                }}
+
+                function animate() {{
+                    if (!animationActive || stopAnimation) return;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (let i = 0; i < particlesArray.length; i++) {{
+                        particlesArray[i].update();
+                    }}
+                    connect();
+                    requestAnimationFrame(animate);
+                }}
+
+                window.addEventListener("resize", function () {{
+                    canvas.width = innerWidth;
+                    canvas.height = innerHeight;
+                    mouse.radius = (canvas.height / 80) * (canvas.width / 80);
+                    init();
+                    if (stopAnimation) {{
+                        drawFrozenState();
+                    }}
+                }});
+
+                window.addEventListener("mouseout", function () {{
+                    mouse.x = undefined;
+                    mouse.y = undefined;
+                }});
+
+                function drawFrozenState() {{
+                    particlesArray.forEach((particle) => particle.draw());
+                    connect();
+                }}
+
+                // Initialize particles
+                init();
+
+                if (animationActive) {{
+                    animate();
+                }}
+
+                if (stopAnimation) {{
+                    drawFrozenState();
+                }}
+            </script>
+        </body>
+        </html>
+        """,
+        height=600,
+    )
+
 elif selected_section == "Research Methods":
     st.markdown("### Research Methods\nDetails about the research methods.")
+
+    # HTML + CSS + JavaScript for Slide Transition
+    html_code = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Translanguaging Presentation</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: #f8ffe6;
+                color: #333;
+                text-align: center;
+                overflow: hidden;
+            }
+            .slide-container {
+                width: 100%;
+                height: 100vh;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .slide {
+                position: absolute;
+                opacity: 0;
+                transition: opacity 1s ease-in-out;
+            }
+            .slide.active {
+                opacity: 1;
+            }
+            h1, h2, h3 {
+                margin: 10px;
+            }
+            .title-bar {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                font-size: 1.2em;
+                font-weight: bold;
+                text-align: left;
+            }
+            .start-button, .nav-button {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1em;
+                margin: 10px;
+            }
+            .start-button:hover, .nav-button:hover {
+                background-color: #0056b3;
+            }
+            .footer {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 0.9em;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="slides">
+            <!-- Slide 1: Title Slide -->
+            <div class="slide active" id="slide1">
+                <h1><strong>TRANSLANGUAGING IN THE BILINGUAL CLASSROOM</strong></h1>
+                <h2>A PEDAGOGY FOR LEARNING AND TEACHING?</h2>
+                <h3>Creese & Blackledge (2010)</h3>
+                <div class="footer">Presented by: TAN, WANJING | WARDAH BINTI ZULKURNAIN</div>
+                <button class="start-button" onclick="nextSlide()">Start</button>
+            </div>
+
+            <!-- Slide 2: Overview -->
+            <div class="slide" id="slide2">
+                <h2>Overview</h2>
+                <ul style="list-style: none; font-size: 1.2em;">
+                    <li>01: INTRODUCTION</li>
+                    <li>02: PROBLEM</li>
+                    <li>03: LITERARY PREVIEW</li>
+                    <li>04: THEORETICAL</li>
+                    <li>05: OBJECTIVES</li>
+                    <li>06: METHODOLOGY</li>
+                    <li>07: IMPLEMENTATION</li>
+                    <li>08: RESULTS</li>
+                    <li>09: CONCLUSION</li>
+                    <li>10: RECOMMENDATIONS</li>
+                </ul>
+                <button class="nav-button" onclick="prevSlide()">Previous</button>
+                <button class="nav-button" onclick="nextSlide()">Next</button>
+            </div>
+
+            <!-- Slide 3: Complementary Schools -->
+            <div class="slide" id="slide3">
+                <h2>Complementary Schools</h2>
+                <p>Established by <strong>community members</strong></p>
+                <p>Focus: Teaching <strong>language, culture, and heritage</strong> to complement statutory education.</p>
+                <button class="nav-button" onclick="prevSlide()">Previous</button>
+                <button class="nav-button" onclick="nextSlide()">Next</button>
+            </div>
+
+            <!-- Add More Slides Here -->
+        </div>
+
+        <script>
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            showSlide(currentSlide);
+        </script>
+    </body>
+    </html>
+    """
+
+    # Streamlit Component to Embed HTML Code
+    st.components.v1.html(html_code, height=600)
 
 elif selected_section == "Results":
     st.markdown("### Results\nResults of the study are presented here.")
